@@ -1,7 +1,8 @@
-var DETAIL_IMAGE_SELECTOR = '[data-image-role="target"]';
-var DETAIL_TITLE_SELECTOR = '[data-image-role="title"]';
-var THUMBNAIL_LINK_SELECTOR = '[data-image-role="trigger"]';
+var DETAIL_IMAGE_SELECTOR = '[data-image-role="target"]'; //Image
+var DETAIL_TITLE_SELECTOR = '[data-image-role="title"]'; //Title
+var THUMBNAIL_LINK_SELECTOR = '[data-image-role="trigger"]'; //URL
 
+//Change big image & title
 function setDetails(imageUrl, titleText) {
     'use strict';
 
@@ -12,6 +13,7 @@ function setDetails(imageUrl, titleText) {
     detailTitle.textContent = titleText;
 }
 
+//Get image & it's title form thumbnail
 function imageFromThumb(thumbnail) {
     'use strict';
     return thumbnail.getAttribute('data-image-url');
@@ -22,13 +24,14 @@ function titleFromThumb(thumbnail) {
     return thumbnail.getAttribute('data-image-title');
 }
 
+//Work on top of 3 prior functions
 function setDetailsFromThumb(thumbnail) {
     'use strict';
     setDetails(imageFromThumb(thumbnail), titleFromThumb(thumbnail));
 }
 
+//Event listener
 function addThumbClickHandler(thumb) {
-    'use strict';
     thumb.addEventListener('click', function (event) {
         event.preventDefault();
         setDetailsFromThumb(thumb); 
